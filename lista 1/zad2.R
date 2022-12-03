@@ -48,7 +48,7 @@ qqline(kk, col='red')
 
 #4
 
-#2 liczby z rozkładu normalnego
+#2 liczby z rozkładu jednostajnego
 kkk = sort(runif(2, -3, 3))
 my_print('Wylosowane wartości', kkk)
 
@@ -63,11 +63,26 @@ my_print('Prawdopodobieństwo dla rozkładu normalnego', p2)
 #5
 
 #porównanie wartości poszczególnych kwantyli
-my_print('Kwantyl 0.001', abs(quantile(p1, 0.001) - quantile(p2, 0.001)))
-my_print('Kwantyl 0.005', abs(quantile(p1, 0.005) - quantile(p2, 0.005)))
-my_print('Kwantyl 0.01', abs(quantile(p1, 0.01) - quantile(p2, 0.01)))
-my_print('Kwantyl 0.05', abs(quantile(p1, 0.05) - quantile(p2, 0.05)))
-my_print('Kwantyl 0.95', abs(quantile(p1, 0.95) - quantile(p2, 0.95)))
-my_print('Kwantyl 0.99', abs(quantile(p1, 0.99) - quantile(p2, 0.99)))
-my_print('Kwantyl 0.995', abs(quantile(p1, 0.995) - quantile(p2, 0.995)))
-my_print('Kwantyl 0.999', abs(quantile(p1, 0.999) - quantile(p2, 0.999)))
+my_print('Kwantyl 0.001 dla rozkładu studenta', qt(p1, 0.001))
+my_print('Kwantyl 0.001 dla rozkładu normalnego', qnorm(p2, 0.001))
+
+my_print('Kwantyl 0.005 dla rozkładu studenta', qt(p1, 0.005))
+my_print('Kwantyl 0.005 dla rozkładu normalnego', qnorm(p2, 0.005))
+
+my_print('Kwantyl 0.01 dla rozkładu studenta', qt(p1, 0.01))
+my_print('Kwantyl 0.01 dla rozkładu normalnego', qnorm(p2, 0.01))
+
+my_print('Kwantyl 0.05 dla rozkładu studenta', qt(p1, 0.05))
+my_print('Kwantyl 0.05 dla rozkładu normalnego', qnorm(p2, 0.05))
+
+my_print('Kwantyl 0.95 dla rozkładu studenta', qt(p1, 0.95))
+my_print('Kwantyl 0.95 dla rozkładu normalnego', qnorm(p2, 0.95))
+
+my_print('Kwantyl 0.99 dla rozkładu studenta', qt(p1, 0.99))
+my_print('Kwantyl 0.99 dla rozkładu normalnego', qnorm(p2, 0.99))
+
+my_print('Kwantyl 0.995 dla rozkładu studenta', qt(p1, 0.995))
+my_print('Kwantyl 0.995 dla rozkładu normalnego', qnorm(p2, 0.995))
+
+my_print('Kwantyl 0.999 dla rozkładu studenta', qt(p1, 0.999))
+my_print('Kwantyl 0.999 dla rozkładu normalnego', qnorm(p2, 0.999))

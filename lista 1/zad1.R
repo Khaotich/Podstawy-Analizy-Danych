@@ -14,6 +14,7 @@ library(moments)
 #dane
 dane = read_excel('Zad_domowe_nr_1_2022-2023_KP.xlsx')
 masa = dane$Masa_ptaka
+t = ((length(masa) - 1) / length(masa))
 
 #A
 
@@ -24,10 +25,10 @@ my_print("Średnia", mean(masa))
 my_print("Mediana", median(masa))
 
 #wariancja
-my_print("Wariancja", var(masa))
+my_print("Wariancja", var(masa) * t)
 
 #odchylenie standardowe
-my_print("Odchylenie standardowe", sd(masa))
+my_print("Odchylenie standardowe", sd(masa) * t)
 
 #kwartyle
 my_print("Kwartyl dolny", quantile(masa, 0.25))
@@ -42,10 +43,14 @@ my_print("Odchylenie ćwiartkowe", IQR(masa) / 2)
 #współczynnik skośności
 my_print("Współczynnik skośności", skewness(masa))
 
+#współczynik skośności jest > 0 więc mamy asymetrie prawostroną
+
 #kurtoza
 my_print("Kurtoza", kurtosis(masa))
 
-# użyteczne dane to średnia, mediana i kwartyle
+#kurtoza jest dodatnia, intensywność wartości skrajnych jest większa niż dla rozkładu normalnego („ogony“ rozkładu są „grubsze“)
+
+#użyteczne dane to średnia, mediana i kwartyle, współczynnik skośności
 
 #B
 
@@ -55,9 +60,9 @@ hist(masa, main='Histogram rozkładu masy ptaków', xlab='Masa', ylab='Liczebno�
 #C
 
 #wykres ramka-wąsy
-boxplot(masa)
+boxplot(masa, range=0.5)
 
-#na wykresie ramka-wąsy nie zauważyłem odstających obserwacji
+#na wykresie ramka-wąsy zauważyłem 3 odstające obserwacje
 
 #D
 
