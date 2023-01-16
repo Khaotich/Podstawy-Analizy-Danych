@@ -6,37 +6,38 @@ my_print <- function(x, y)
 library(readxl)
 
 dane = read_excel("Zadanie_domowe_nr_2_2022_2023_KP.xlsx")
-dlugosc_trasy = dane$D艂ugo艣膰_trasy_w_milach
-obciazenie_karty = dane$`Obci膮偶enie_kart_w USD`
-model = lm(formula=dlugosc_trasy~obciazenie_karty, data=dane)
+dlugosc_trasy = dane$D硊go滄_trasy_w_milach
+obciazenie_karty = dane$`Obci箍enie_kart_w USD`
+model = lm(formula=obciazenie_karty~dlugosc_trasy, data=dane)
 
 print(summary(model))
 plot(model)
 
 y_mean = mean(obciazenie_karty)
 SST = sum((obciazenie_karty - y_mean) ^ 2)
-my_print("Ca艂kowita suma kwadrat贸w (SST)", SST)
+my_print("Ca砶owita suma kwadrat體 (SST)", SST)
 
 SEE = sum(model$residuals ^ 2)
-my_print("Suma kwadrat贸w b艂臋d贸w (SEE)", SEE)
+my_print("Suma kwadrat體 b酬d體 (SEE)", SEE)
 
 SSR = sum((model$fitted.values - y_mean) ^ 2)
-my_print("Regresyjna suma kwadrat贸w (SSR)", SSR)
+my_print("Regresyjna suma kwadrat體 (SSR)", SSR)
 
 R2 = SSR / SST
-my_print("Wsp贸艂czynnik determinacji R2", R2)
+my_print("Wsp蟪czynnik determinacji R2", R2)
 
+#ilo滄 pr骲ek
 n = nrow(dane)
 p = 2
 
 R2_adj = 1 - (1 - R2) * (n - 1) / (n - p)
-my_print("Skorygowany wsp贸艂czynnik determinacji", R2_adj)
+my_print("Skorygowany wsp蟪czynnik determinacji", R2_adj)
 
 MSR = SSR / (1)
-my_print("Minimalny znacz膮cy wsp贸艂czynnik (MSR)", MSR)
+my_print("Minimalny znacz筩t wsp蟪czynnik (MSR)", MSR)
 
 MSE = SEE / (n - p)
-my_print("Nieobci膮偶ony estymator wariancji (MSE)", MSE)
+my_print("Nieobci箍ony estymator wariancji (MSE)", MSE)
 
 F = MSR / MSE
 my_print("Statystyka F", F)
@@ -46,30 +47,30 @@ plot(seq(0, 20, 0.1), df(seq(0, 20, 0.1), p-1, n-p), xlab="X", ylab="f(x)")
 plot(seq(0, 20, 0.1), pf(seq(0, 20, 0.1), p-1, n-p), xlab="X", ylab="F(x)")
 
 obszar_krytyczny = qf(0.95, p-1, n-p)
-my_print("Obszar krytyczny warto艣ci F", obszar_krytyczny)
+my_print("Obszar krytyczny warto渃i F", obszar_krytyczny)
 
 graniczny_poziom_istotnosci = pf(F, p - 1, n - p, lower.tail=FALSE)
-my_print("Graniczny poziom istotno艣ci", graniczny_poziom_istotnosci)
+my_print("Graniczny poziom istotno渃i", graniczny_poziom_istotnosci)
 
 alfa = model$coefficients
 alfa_se = sqrt(diag(vcov(model)))
 t = alfa / alfa_se
-my_print("Warto艣膰 t", t[2])
+my_print("Warto滄 t", t[2])
 
 t_gr = qt(1 - 0.05/2, df=n-p)
-my_print("Warto艣膰 graniczna t", t_gr)
+my_print("Warto滄 graniczna t", t_gr)
 
 p_value = 2*pt(-abs(t), df=n-p, lower.tail=TRUE)
 my_print("P-value", p_value[2])
 
 
 h = hatvalues(model)
-print("Obserwacje odstaj膮ce")
+print("Obserwacje odstaj筩e")
 print(head(h))
 plot(h)
 abline(2 / n, 0)
 
 d = cooks.distance(model)
-print("Obserwacje wp艂ywowe")
+print("Obserwacje wp硑wowe")
 print(head(d))
 plot(d)
