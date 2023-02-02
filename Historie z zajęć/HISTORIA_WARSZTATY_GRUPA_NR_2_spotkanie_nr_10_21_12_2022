@@ -1,0 +1,40 @@
+save.image("E:\\Warsztaty_2018_2019\\obszar_21_11_2018")
+q()
+list.files()
+library(readxl)
+dane1=read_excel("example_12_8_Freund_Perles.xls")
+dane1
+kopalnia_1=dane1$Kopalnia_I
+kopalnia_2=dane1$Kopalnia_II
+shapiro.test(kopalnia_1)
+shapiro.test(kopalnia_2)
+var.test(kopalnia_1, kopalnia_2)
+t.test(kopalnia_1, kopalnia_2)
+t.test(kopalnia_1, kopalnia_2, var.equal=T)
+dane2=read_excel("example_12_9_Freund_Perles.xls")
+dane2
+przed=dane2$Przed_wdro¿eniem
+po=dane2$Po_wdro¿eniu
+delty=po-przed
+delty
+shapiro.test(delty)
+t.test(przed, po, paired=T)
+#Test Wilcoxona robimy tylko po to, zeby go sobie przypomnieæ, nie ¿eby by³o lepiej zrobione zadanie. 
+wilcox.test(przed, po, paired=T)
+library(multcomp)
+attach(cholesterol)
+cholesterol
+table(trt)
+aggregate(response, by=list(trt), FUN=mean)
+boxplot(response~trt, data=cholesterol)
+aggregate(response, by=list(trt), FUN=sd)
+model=aov(response~trt, data=cholesterol)
+summary(model)
+library(car)
+qqPlot(lm(response~trt, data=cholesterol))
+#W pakiecie podstawowym: test Bartletta
+bartlett.test(response~trt, data=cholesterol)
+library(car)
+#Test Levene'a na równoœæ wariancji
+leveneTest(response~trt, data=cholesterol)
+TukeyHSD(model)

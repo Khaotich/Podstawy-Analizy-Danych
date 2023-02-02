@@ -1,0 +1,37 @@
+Posthoc multiple comparisons of means : Fisher LSD 
+    95% family-wise confidence level
+
+$ind
+                  diff    lwr.ci      upr.ci    pval    
+gat21-gat11 -0.5580357 -1.174477  0.05840558  0.0748 .  
+gat31-gat11 -1.9942857 -2.620243 -1.36832878 9.6e-08 ***
+gat31-gat21 -1.4362500 -2.041633 -0.83086685 2.1e-05 ***
+
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+
+  Posthoc multiple comparisons of means : Tukey HSD 
+    95% family-wise confidence level
+
+$ind
+                  diff    lwr.ci     upr.ci    pval    
+gat21-gat11 -0.5580357 -1.300147  0.1840751  0.1733    
+gat31-gat11 -1.9942857 -2.747852 -1.2407194 2.8e-07 ***
+gat31-gat21 -1.4362500 -2.165048 -0.7074517 6.2e-05 ***
+
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+
+  Posthoc multiple comparisons of means: Scheffe Test 
+    95% family-wise confidence level
+
+$ind
+                  diff    lwr.ci     upr.ci    pval    
+gat21-gat11 -0.5580357 -1.333197  0.2171255 0.20074    
+gat31-gat11 -1.9942857 -2.781413 -1.2071588 5.6e-07 ***
+gat31-gat21 -1.4362500 -2.197506 -0.6749942 0.00011 ***
+
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1

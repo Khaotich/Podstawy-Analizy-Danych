@@ -1,0 +1,23 @@
+save.image("E:\\Warsztaty_2018_2019\\obszar_21_11_2018")
+q()
+attach(women)
+women
+y=women$weight
+x=women$height
+model=lm(y~x)
+summary(model)
+res=residuals(model)
+res
+fitted=fitted(model)
+fitted
+reszty_surowe=y-fitted
+reszty_surowe
+par(mfrow=c(2,2))
+plot(model)
+library(car)
+scatterplot(x, y, regLine=T, smooth=F)
+# dodajemy cz³on kwadratowy
+model1=lm(y~x+I(x^2))
+summary(model1)
+par(mfrow=c(2,2))
+plot(model1)

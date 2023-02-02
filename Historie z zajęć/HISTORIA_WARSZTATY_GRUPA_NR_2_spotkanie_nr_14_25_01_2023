@@ -1,0 +1,54 @@
+#ppcor, MASS, DescTools, car
+library(ppcor)
+library(DescTools)
+library(MASS)
+library(car)
+grade=c(80, 50, 80, 90, 92, 85, 76, 81, 90, 95)
+hours=c(5, 4, 6, 6, 3, 5, 9, 9, 5, 6)
+score=c(90, 80, 70, 80, 95, 91, 99, 88, 92, 91)
+#Estymatr kowariancji
+cov(grade, hours)
+cor(grade, hours)
+sd1=sd(grade)
+sd2=sd(hours)
+cor1=cov/(sd1*sd2)
+cor1
+cor.test(grade, hours)
+ramka=data.frame(grade, hours, score)
+ramka
+cov(ramka)
+cor(ramka)
+library(ppcor)
+pcor(ramka)
+?cor
+cor(ramka, method="pearson")
+cor(ramka, method="spearman")
+cor(ramka, method="kendall")
+library(DescTools)
+attach(d.pizza)
+d.pizza
+driver=d.pizza$driver
+wine=d.pizza$wine_delivered
+driver
+wine
+wine1=as.factor(wine)
+wine1
+tab=table(driver, wine1)
+tab
+test=chisq.test(tab)
+test
+test$expected
+library(DescTools)
+CramerV(tab)
+library(nlstools)
+L.minor
+conc=L.minor$conc
+rate=L.minor$rate
+plot(conc, rate)
+michaelis
+model1=nls(rate~Vmax*conc/(Km+conc), start=list(Km=20, Vmax=110), trace=T)
+summary(model1)
+model2=nls(rate~Vmax*conc/(Km+conc), start=list(Km=40, Vmax=130), trace=T)
+summary(model2)
+model3=nls(rate~Vmax*conc/(Km+conc), start=list(Km=150, Vmax=170), trace=T)
+summary(model3)

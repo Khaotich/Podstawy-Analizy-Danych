@@ -1,0 +1,57 @@
+save.image("E:\\Warsztaty_2018_2019\\obszar_21_11_2018")
+q()
+list.files()
+library(readxl)
+dane1=read_excel("Dane_jako�ciowe.xlsx", sheet=1)
+dane1
+edit(dane1)
+choroba=dane1$Choroba_wie�cowa
+ci�nienie=dane1$Ci�nienie_podwy�szone
+tab=table(choroba, ci�nienie)
+tab
+test1=chisq.test(tab)
+test1
+test1$observed
+test1$expected
+sport=c(1,1,1,1,0,0,0,0)
+palenie=c(0,0,0,0,1,1,1,1)
+is.numeric(sport)
+sport1=as.factor(sport)
+is.numeric(sport1)
+is.factor(sport1)
+palenie1=as.factor(palenie)
+tab2=table(sport1, palenie1)
+tab2
+test2=chisq.test(tab2)
+test2
+test2$expected
+fisher.test(tab2)
+dane3=read_excel("Zwierz�ta.xls")
+dane3
+edit(dane3)
+zw=dane3$Zwierz�
+status=dane3$Status
+tab3=table(zw, status)
+tab3
+test3=chisq.test(tab3)
+test3
+test3$expected
+?f
+dane4=read_excel("Dane_jako�ciowe.xlsx", sheet=2)
+dane4
+edit(dane4)
+nerwowo��=dane4$Nerwowo��
+przem�czenie=dane4$Przem�czenie
+tab5=table(nerwowo��, przem�czenie)
+fisher.test(tab5)
+before=c(0,1,0,0,1,1,1,0,0,1,1,1,0,0,1,1,1,1,0,1)
+after=c(1,0,0,0,1,1,1,1,1,1,0,1,0,0,0,1,1,1,0,0)
+lngth(before)
+length(before)
+length(after)
+tab6=table(before, after)
+mcnemar.test(tab6)
+before1=as.factor(before)
+after1=as.factor(after)
+tab6=table(before1, after1)
+mcnemar.test(tab6)

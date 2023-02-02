@@ -1,0 +1,49 @@
+save.image("E:\\Warsztaty_2018_2019\\obszar_21_11_2018")
+q()
+library(readxl)
+sklepy=read_excel("sklepy.xls")
+sklepy
+sklep1=sklepy$Sklep1
+sklep2=sklepy$Sklep2
+# Sprawdzamy, czy dane zostaly pobrane z populacji, w których badana cecha ma rozk³ad normalny. 
+shapiro.test(sklep1)
+shapiro.test(sklep2)
+# Dla testu Shapiro-Wilka H0 mówi, ¿e dane pochodz¹ z populacji o rozk³adzie normalym.
+# Sprawdzamy, czy wariancje w populacjach, z których zosta³y pobrane dane s¹ takie same. 
+# Test Fishera na równoœæ wariancji: 
+var.test(sklep1, sklep2)
+t.test(sklep1, sklep2)
+t.test(sklep1, sklep2, var.equal=T)
+a1=rnorm(50, 35, 3)
+a2=rnorm(50, 32, 3)
+a1
+a2
+shapiro.test(a1)
+shapiro.test(a2)
+var.test(a1, a2)
+t.test(a1, a2, var.equal=T)
+lekarze=read_excel("Lekarze.xlsx")
+lekarze
+miasto=lekarze$Miasto
+wieœ=lekarze$Wieœ
+miasto
+wieœ
+shapiro.test(miasto)
+shapiro.test(wieœ)
+wilcox.test(miasto, wieœ)
+ks.test(miasto, wieœ)
+powi¹zane=read_excel("Sprzeda¿_powi¹zane.xlsx")
+powi¹zane
+przed=powi¹zane$Tydzieñ_przed
+po=powi¹zane$Tydzieñ_po
+t.test(przed, po, paired=T)
+# Co by by³o, gdybysmy zapomnieli o parametrze "paired=T" ?
+t.test(przed, po)
+# Za³o¿enia testu Studenta dla obserwacji powi¹zanych:
+d=po-przed
+d
+shapiro.test(d)
+# Mo¿na rêcznie sprawdziæ, czy œrednia ró¿nic w populacji generalnej wynosi zero.  
+t.test(d, mu=0)
+# Gdyby nie by³o spe³nione za³o¿enie testu Studenta dla obserwacji powi¹zanych:
+wilcox.test(przed, po, paired=T)

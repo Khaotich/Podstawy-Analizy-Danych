@@ -1,0 +1,94 @@
+save.image("E:\\Warsztaty_2018_2019\\obszar_21_11_2018")
+q()
+list.files()
+library(readxl)
+dane1=read_excel("Zwierzêta.xls")
+edit(dane1)
+zwierzê=dane1$Zwierzê
+status=dane1$Status
+tab1=table(zwierzê)
+tab1
+tab2=table(status)
+tab2
+table(zwierzê, status)
+tab3=table(zwierzê, status)
+tab3
+barplot(tab3)
+barplot(tab3, beside=T)
+barplot(tab3, beside=T, horiz=T)
+barplot(tab3, beside=T, horiz=T, col=c("red"))
+barplot(tab3, beside=T, horiz=T, col=c("red"))
+barplot(tab3, beside=T, horiz=T, col=c("red", "blue", "green"))
+barplot(tab3, beside=T, horiz=T, col=c("red", "blue", "green"), xlim=c(0,50))
+barplot(tab3, beside=T, horiz=T, col=c("red", "blue", "green"), xlim=c(0,50), main="Wykes 1"))
+barplot(tab3, beside=T, horiz=T, col=c("red", "blue", "green"), xlim=c(0,50), main="Wykes 1")
+barplot(tab3, beside=T, horiz=T, col=c("red", "blue", "green"), xlim=c(0,50), main="Wykes 1", xlab="Ile ich jest")
+pdf("Wykres_1a.pdf")
+barplot(tab3, beside=T, horiz=T, col=c("red", "blue", "green"), xlim=c(0,50), main="Wykes 1", xlab="Ile ich jest")
+dev.off()
+png("Wykres_1b.png")
+barplot(tab3, beside=T, horiz=T, col=c("red", "blue", "green"), xlim=c(0,50), main="Wykes 1", xlab="Ile ich jest")
+dev.off()
+dane2=rread_excel("Lekarze.xlsx")
+dane2=read_excel("Lekarze.xlsx")
+dane2
+miasto=dane2$Miasto
+miasto
+is.numeric(miasto)
+sort(miasto)
+hist(miasto)
+hist(miasto, breaks=15)
+hist(miasto, breaks=4)
+hist(miasto, breaks=12)
+hist(miasto, breaks=c(25, 45, 65))
+hist(miasto, breaks=c(25, 30, 45, 50, 60))
+hist(miasto)
+hist(miasto, probability=T)
+hist(miasto, probability=T, ylim=c(0,0.07) )
+hist(miasto, probability=T, ylim=c(0,0.06) )
+boxplot(miasto)
+wieœ=dane2$Wieœ
+wieœ
+dane3=data.frame(miasto, wieœ)
+dane4=stack(dane3)
+dane4
+boxplot(values~ind, dane4)
+boxplot(values~ind, dane4, col=c("green"))
+boxplot(values~ind, dane4, col=c("green", "red"))
+attach(women)
+women
+wzrost=women$height
+masa=women$weight
+plot(wzrost, masa)
+plot(wzrost, masa, type="p")
+plot(wzrost, masa, type="l")
+plot(wzrost, masa, type="b")
+plot(wzrost, masa, type="o")
+abline(h=135)
+abline(v=65)
+abline(v=mean(wzrost), col="red")
+abline(lm(masa~wzrost), col="green")
+library(car)
+scatterplot(wzrost, masa)
+scatterplot(wzrost, masa, smooth=F)
+scatterplot(wzrost, masa, smooth=F, regLine=F)
+x=seq(from=-3, to=5, by=0.01)
+x
+y=dnorm(x, 2, 0.5)
+plot(x,y)
+curve(dnorm(x, 2, 0.5))
+curve(dnorm(x, 2, 0.5), xlim=c(-3, 5), ylim=c(0,1.05))
+curve(pnorm(x, 2, 0.5), add=T, col="red")
+curve(dnorm(x), add=T, col="blue")
+y1=rnorm(1000, 2, 0.5)
+y1
+qqnorm(y1)
+y2=runif(1000, -3,3)
+qqnorm(y2)
+set.seed(2414)
+y5=runif(1, -3,3)
+y5
+
+#  Adres strony internetowej o rozk³adach:
+#  http://pbiecek.github.io/Przewodnik/Programowanie/generatory_2.html
+

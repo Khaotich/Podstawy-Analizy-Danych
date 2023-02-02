@@ -1,0 +1,65 @@
+save.image("E:\\Warsztaty_2018_2019\\obszar_21_11_2018")
+q()
+chooseCRANmirror()
+local({pkg <- select.list(sort(.packages(all.available = TRUE)),graphics=TRUE)
+if(nchar(pkg)) library(pkg, character.only=TRUE)})
+utils:::menuInstallPkgs()
+local({pkg <- select.list(sort(.packages(all.available = TRUE)),graphics=TRUE)
+if(nchar(pkg)) library(pkg, character.only=TRUE)})
+local({pkg <- select.list(sort(.packages(all.available = TRUE)),graphics=TRUE)
+if(nchar(pkg)) library(pkg, character.only=TRUE)})
+library(car)
+library(readxl)
+list.files()
+?mtcars
+mtcars
+head(mtcars)
+edit(mtcars)
+mpg1=mtcars$mpg
+mpg1
+is.numeric(mpg1)
+vs1=mtcars$vs
+vs1
+is.numeric(vs1)
+vs2=as.factor(vs1)
+vs2
+is.factor(vs1)
+is.factor(vs2)
+a1=c(3,4,6,1,8)
+a1
+a2=c(4:8)
+a2
+a3=c(5,5,5,5,5)
+a3
+ramka1=data.frame(a1,a2,a3)
+ramka1
+ramka2=stack(ramka1)
+ramka2
+mpg1
+sort(mpg1)
+?sort
+sort(mpg1, decreasing=F)
+sort(mpg1, decreasing=T)
+?sort
+length(mpg1)
+mean(mpg1)
+median(mpg1)
+min(mpg1)
+mag(mpg1)
+max(mpg1)
+var(mpg1)
+sd(mpg1)
+a1
+sd(a1)
+sd1=sqrt(sum((a1-mean(a1)^2)/4)
+sd1=sqrt(sum((a1-mean(a1))^2)/4)
+sd1=sqrt(sum((a1-mean(a1))^2)/4)
+sd1
+sd2=sqrt(sum((a1-mean(a1))^2)/5)
+sd2
+sd3=sd1*sqrt(4/5)
+sd3
+skewness(mpg)
+library(moments)
+skewness(mpg1)
+kurtosis(mpg1)

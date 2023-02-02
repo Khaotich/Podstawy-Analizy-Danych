@@ -1,0 +1,57 @@
+save.image("E:\\Warsztaty_2018_2019\\obszar_21_11_2018")
+q()
+attach(women)
+women
+y=women$weight
+x=women$height
+plot(x,y)
+model1=lm(y~x)
+summary(model1)
+model2=lm(y~x+I(x^2))
+summary(model2)
+z=x^2
+model3=lm(y~x+z)
+summary(model3)
+par(mfrow=c(2,2))
+plot(model1)
+plot(model2)
+#Plik state.x77 nie jest ramk¹ danych. Zatem "attach" nie zadzia³a. 
+attach(state.x77)
+states=as.data.frame(state.x77)
+states
+states1=as.data.frame(state.x77[,c("Murder", "Population", "Illiteracy", "Frost", "Income")])
+states1
+model40=lm(Murder~Population+Frost+Income+Illiteracy)
+model40=lm(Murder~Population+Frost+Income+Illiteracy, data=states1)
+summary(model40)
+model41=lm(Murder~Population+Illiteracy, data=states1)
+summary(model41)
+#Dla modeli zagnie¿d¿onych
+anova(model40, model41)
+AIC(model40)
+AIC(model41)
+AIC(model40, model41)
+par(mfrow=c(2,2))
+plot(model40)
+par(mfrow=c(2,2))
+plot(model41)
+cor(states1)
+library(MASS)
+stepAIC(model40, direction="both")
+stepAIC(model40, direction="backward")
+res_surowe=residuals(model41)
+res_surowe
+res_standard=rstandard(model41)
+res_standard
+sort(res_standard)
+res_student=rstudent(model41)
+res_student
+sort(res_student)
+hat=hatvalues(model41)
+hat
+cook=cooks.distance(model41)
+cook
+library(car)
+influencePlot(model41)
+par(mfrow=c(2,2))
+plot(model41)

@@ -1,0 +1,43 @@
+save.image("E:\\Warsztaty_2018_2019\\obszar_21_11_2018")
+q()
+library(flexclust)
+data(nutrient, package="flexclust")
+head(nutrient)
+head(nutrient, 10)
+nutrient
+?dist
+d=dist(nutrient)
+d
+as.matrix(d)
+as.matrix(d)[1:5, 1:5]
+?scale
+nutrient.skalowane=scale(nutrient)
+d1=dist(nutrient.skalowane)
+as.matrix(d1)[1:5, 1:5]
+model1=hclust(d1, method="single")
+plot(model1)
+plot(model1, hang=-1, cex=0.8)
+model2=hclust(d1, method="average")
+plot(model2, hang=-1, cex=0.8)
+model3=hclust(d1, method="ward.D")
+plot(model3, hang=-1, cex=0.8)
+clusters=cutree(model3, k=5)
+clusters
+table(clusters)
+rect.hclust(model3, k=5)
+library(AER)
+data(Affairs, package="AER")
+summary(Affairs)
+summary(Affairs$affairs)
+table(Affairs$affairs)
+Affairs$tnaffair[Affairs$affairs>0]=1
+Affairs$tnaffair[Affairs$affairs==0]=0
+Affairs$tnaffair=as.factor(Affairs$tnaffair)
+Affairs$tnaffair
+table(Affairs$tnaffair)
+model4=glm(tnaffair~gender+age+yearsmarried+children+religiousness+education+occupation+rating, data=Affairs, family=binomial())
+summary(model4)
+model5=glm(tnaffair~age+yearsmarried+religiousness+rating, data=Affairs, family=binomial())
+summary(model5)
+coef(model5)
+exp(coef(model5))

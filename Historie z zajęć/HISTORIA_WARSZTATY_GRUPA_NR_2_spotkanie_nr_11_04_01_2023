@@ -1,0 +1,65 @@
+save.image("E:\\Warsztaty_2018_2019\\obszar_21_11_2018")
+q()
+list.files()
+library(readxl)
+dane1=read_excel("ex15_14.XLS")
+dane1
+op1=dane1$`Operator 1`
+op1
+op2=dane1$`Operator 2`
+op3=dane1$`Operator 3`
+op4=dane1$`Operator 4`
+op2
+op3
+op4
+operatorzy=data.frame(op1, op2, op3, op4)
+op=stack(operatorzy)
+operatorzy
+op
+model=aov(values~ind, data=op)
+summary(model)
+library(car)
+# Sprawdzamy za³o¿enia ANOVY. Najpierw nowrmalnoœæ rozk³adu reszt: 
+qqPlot(lm(values~ind, data=op))
+# W pakiecie "base" mamy test Bartletta na równoœæ wariancji
+bartlett.test(values~ind, data=op)
+# Szukamy obserwacji odstajacych: 
+outlierTest(model)
+#W pakiecie car mamy test Levene'a na jednorodnoœæ wariancji
+leveneTest(values~ind, data=op)
+# Gdyby nale¿a³o odrzuciæ hipotezê zerow¹ ANOVY, warto by³oby poszukaæ, którzy operatorzy siê ró¿ni¹ pod wzglêdem œredniej liczby pope³nianych b³edów. 
+#Test pierwszego wyboru to test HSD Tukeya
+TukeyHSD(model)
+# W sytuacji, gdy ANOVA nie odrzuca H0 nie wykonujemy testów post-hoc, bo sa "gorsze" ni¿ sama ANOVA (w ujêciu klasycznym ich wykonywanie nie ma wtedy sensu). 
+library(DescTools)
+library(pwr)
+library(HH)
+library(DescTools)
+?PostHocTest
+PostHocTest(model, method="lsd")
+PostHocTest(model, method="hsd")
+PostHocTest(model, method="scheffe")
+attach(ToothGrowth)
+ToothGrowth
+table(supp, dose)
+is.numeric(dose)
+dose=as.factor(dose)
+is.numeric(dose)
+model1=aov(len~supp*dose)
+summary(model1)
+# Wykrs interakcji:
+interaction.plot(dose, supp, len, type="b")
+interaction.plot(supp, dose, len, type="b")
+library(HH)
+interaction2wt(len~supp*dose)
+# Co bêdzie, jeœli tworzac model funkcj¹ aov zamiast * uzyjê + ?
+model2=aov(len~supp+dose)
+summary(model2)
+leveneTest(len~supp*dose)
+leveneTest(len~supp*dose)
+qqPlot(lm(len~supp*dose))
+outlierTest(model1)
+#Poniewa¿ odrzucamy hipotezy H0 ANOVY, mo¿emy wykonaæ testy post-hoc. 
+# Zachêcam do obejrzenia filmu o lêku przed œmierci¹:). 
+# Link: https://www.youtube.com/watch?v=ZxS17lfPF94
+

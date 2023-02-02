@@ -1,0 +1,92 @@
+save.image("E:\\Warsztaty_2018_2019\\obszar_21_11_2018")
+q()
+attach(mtcars)
+head(mtcars)
+mpg1=mtcars$mpg
+mpg1
+mean(mpg1)
+length(mpg1)
+sd(mpg1)
+sd(mpg1)*sqrt(31/32)
+skewness(mpg1)
+library(moments)
+skewness(mpg1)
+hist(mopg1)
+hist(mpg1)
+mode(mpg1)
+median(mpg1)
+sort(mpg1)
+quantile(mpg1, 0.25)
+?quantile
+quantile(mpg1, 0.25, type=1)
+quantile(mpg1, 0.25, type=7)
+quantile(mpg1, 0.25, type=8)
+quantile(mpg1, 0.10)
+boxplot(mpg1)
+?boxplot
+boxplot(mpg1, range=0)
+boxplot(mpg1, range=1)
+boxplot(mpg1, range=0.5)
+boxplot(mpg1, range=1.5)
+library(moments)
+kurtosis(mpg1)
+IQR(mpg1)
+quantile(mpg1, 0.25)
+quantile(mpg1, 0.75)
+22.8-15.425
+a1=c(1:5)
+a1
+a2=c(6:10)
+a3=c(11:15)
+a4=c(16:20)
+ramka1=data.frame(a1, a2, a3, a4)
+ramka1
+# cbind,   rbind
+ramka2=data.frame(cbind(a1, a2, a3, a4))
+ramka2
+ramka3=data.frame(rbind(a1, a2, a3, a4))
+ramka3
+#y=matrix(wektor, nrow, ncol, byrow, dimnames=list(charvector, charvector))
+y1=matrix(1:20, nrow=4, ncol=5)
+y1
+y2=matrix(1:20, nrow=4, ncol=5, byrow=T)
+y2
+wiersze=c("a1", "a2", "a3", "a4")
+wiersze
+kolumny=c("b1", "b2", "b3", "b4", "b5")
+kolumny
+y3=matrix(1:20, nrow=4, ncol=5, byrow=T, dimnames=list(wiersze, kolumny))
+y3
+# Jak zrobiæ macierz bez nazw kolumn i wierszy? 
+ramka3
+ramka3[2,3]
+ramka3[,3]
+ramka3[4,]
+ramka3[2, c(3:5)]
+b1=c(1:50)
+v1[48]
+b1[48]
+list.files()
+library(readxl)
+dane=read_excel("Lekarze.xlsx")
+dane
+edit(dane)
+Miasto=dane$Miasto
+mean(Miasto)
+Wieœ=dane$Wieœ
+mean(Wieœ)
+length(Wieœ)
+?mean
+mean(Wieœ, na.rm=T)
+Wieœ1=na.omit(Wieœ)
+Wieœ1
+mean(Wieœ1)
+dane
+list.files()
+dane1=read_excel("Zanieczyszczenia.xls")
+dane1
+dane2=read_excel("Zanieczyszczenia.xls", col_names=F)
+dane2
+dane3=read_excel("Zwierzêta.xls", col_names=T)
+dane3
+edit(dane3)

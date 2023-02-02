@@ -1,0 +1,21 @@
+save.image("E:\\Warsztaty_2018_2019\\obszar_21_11_2018")
+q()
+chooseCRANmirror()
+pakiety=c("ggplot2", "multcomp", "flexclust", "rattle")
+# install.packages(pakiety, depend=T)
+library(multcomp)
+attach(cholesterol)
+edit(cholesterol)
+attach(iris)
+edit(iris)
+library(flexclust)
+data(nutrient, package="flexclust")
+nutrient
+library(rattle)
+data(wine, package="rattle")
+wine
+wine
+library(ggplot2)
+ggplot(wine, aes(x=Malic, y=Alcohol)) + geom_point()
+a=rnorm(100)
+t.test(a, mu=0)

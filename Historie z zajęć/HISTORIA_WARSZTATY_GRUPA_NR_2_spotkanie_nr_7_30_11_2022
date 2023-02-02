@@ -1,0 +1,55 @@
+save.image("E:\\Warsztaty_2018_2019\\obszar_21_11_2018")
+q()
+library(readxl)
+dane=read_excel("Proszki_do_prania")
+dane=read_excel("Proszki_do_prania.xlsx")
+dane
+y=dane$Zu¿ycie
+x=dane$Lata
+library(car)
+scatterplot(x,y,smooth=F, regLine=F)
+scatterplot(x,y,smooth=F, regLine=T)
+model=lm(y~x)
+summary(model)
+par(mfrow=c(2,2))
+plot(model)
+res=residuals(model)
+res
+sort(res)
+res_standard=rstandard(model)
+res_standard
+sort(res_standard)
+res_studentyzowane=rstudent(model)
+res_studentyzowane
+sort(res_studentyzowane)
+SSe=sum(res^2)
+MSE=SSe/8
+# df=n-k-1, n - liczba obserwacji, k - liczba parametrów bez wyrazu wolnego. 
+SSE=sqrt(MSE)
+SSE
+res_standard_próba=res/SSE
+res_standard_próba
+res_standard
+# https://pbiecek.github.io/NaPrzelajDataMiningR/part-13.html
+# Je¿eli wartoœæ bezwzglêdna reszty standaryzowanej lub studentyzowanej >2 to obserwacja jest "podejrzana", mo¿e byæ wp³ywowa. 
+hat_values=hatvalues(model)
+hat_values
+# Je¿eli hatvalue >3k/n lub > 2k/n dla duzych prób to jest "podejrzana". 
+# Wed³ug niektórych Ÿróde³, np. je¿eli odleg³oœæ Cooka > 4/n to obserwacja jest "podejrzana". 
+# Podane kryteria nie s¹ jedynymi:)
+r_standaryzowane=res/(SSE*sqrt(1-hat_values))
+r_standaryzowane
+res_standard
+library(car)
+influencePlot(model)
+influence.measures(model)
+shapiro.test(res)
+shapiro.test(res_standard)
+t.test(res, mu=0)
+library(car)
+ncvTest(model)
+outlierTest(model)
+# Tablice testu Durbina-Wwatsona:
+# https://www.naukowiec.org/tablice/statystyka/rozklad-durbina-watsona_341.html
+library(car)
+durbinWatsonTest(model)
